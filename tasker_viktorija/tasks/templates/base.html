@@ -6,6 +6,13 @@
     <title>{%block title%}TASker{%endblock title%}</title>
 </head>
 <body>
+    <header>
+        <span class="logo">TASKer</span>
+        <ul class="nav">
+            <li><a href="{% url "index" %}">Dashboard</a></li>
+            <li><a href="{% url "task_list" %}">Tasks</a></li>
+        </ul>
+    </header>        
     <main>{%block content%}TASker{%endblock content%}</main>
 </body>
 </html>
