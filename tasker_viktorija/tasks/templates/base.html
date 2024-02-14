@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+!DOCTYPE html>{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{%block title%}TASker{%endblock title%}</title>
+    <title>{% block title %}TASKer{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <header>
@@ -12,8 +13,18 @@
             <li><a href="{% url "index" %}">Dashboard</a></li>
             <li><a href="{% url "task_list" %}">Tasks</a></li>
         </ul>
-    </header>        
-    <main>{%block content%}TASker{%endblock content%}</main>
+    </header>
+    <section class="messages">
+        {% for message in messages %}
+            <p class="message message-{{ message.tags }}">{{ message }}</p>
+        {% endfor %}
+    </section>
+    <main>{% block content %}{% endblock content %}</main>
+    <footer>
+        {% block footer %}{% endblock footer %}
+        <p>&copy; 2024 PTU20 
+            <a style="float:right;" href="https://discord.gg/ywbbZPcY">community on discord</a>
+        </p>
+    </footer>
 </body>
 </html>
-
