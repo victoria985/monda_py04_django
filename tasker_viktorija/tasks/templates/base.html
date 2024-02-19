@@ -1,4 +1,4 @@
-!DOCTYPE html>{% load static i18n %}{% get_current_language as LANGUAGE_CODE %}{% get_available_languages as LANGUAGES %}
+<!DOCTYPE html>{% load static i18n %}{% get_current_language as LANGUAGE_CODE %}{% get_available_languages as LANGUAGES %}
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
@@ -14,7 +14,20 @@
             <li><a href="{% url "task_list" %}">{% trans "tasks"|capfirst %}</a></li>
         </ul>
         <span class="spacer"></span>
-        <form action="{% url "set_language" %}" method="post"></form>
+        <ul class"nav">
+            {% if request.user.is_authenticated %}
+                <li><a href="{% url "user_detail_current" %}">{{ user }}</a></li>
+                {% if user.is_superuser or user.is_staff %}
+                    <li><a href="{% url "admin:index" %}">{% trans "admin"|capfirst %}</a></li>
+                    {% endif %}    
+                <li><form method="post" action="{% url "logout" %}">{% csrf_token %}
+                <button type="submit">{% trans "log out"|capfirst %}</button></form>
+            {% else %}
+                <li><a href="{% url "login" %}">{% trans "log in"|capfirst %}</a></li>
+                <li><a href="{% url "signup" %}">{% trans "sign up"|capfirst %}</a></li>
+            {% endif %}
+        <ul>        
+        <form action="{% url "set_language" %}" method="post">
            {% csrf_token %}
            <input type="hidden" name="next" value="{{ redirect_to}}">
            <select class="language" name="language" onchange="this.form.submit();">
