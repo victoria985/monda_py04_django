@@ -112,7 +112,7 @@ section.messages {
     margin: 0;
 }
 
-.messages .message, ul.errorlist {
+.message, ul.errorlist {
     padding: 0.5rem;
     margin: 0;
     border-bottom: 1px solid #888888;
@@ -163,4 +163,30 @@ main form button {
 main form .helptext {
     display: block;
     font-size: 90%;
+}
+
+button, .button {
+    background-color: #b8b8b8;
+    border: 1pk solid #666666;
+    border-bottom: 2pk solid #004488;
+    padding: 0.5rem;
+    font-size: 120%;
+    cursor: pointer;
+}
+
+button:hover, button:hover {
+    background-color: #b8b8b8;
+    border-bottom: #0055cc;
+}
+
+.toolbar {
+    margin: 0.5rem;
+}
+
+.toolbar form {
+    display: inline;
+}
+
+.toolbar form select {
+    padding: 0.4rem;
 }
