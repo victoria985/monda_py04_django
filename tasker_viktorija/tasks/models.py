@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext as _
+from tinymce.models import HTMLField
 
 
 class Project(models.Model):
@@ -12,6 +13,8 @@ class Project(models.Model):
         on_delete=models.CASCADE,
         related_name='projects',
     )
+
+    description = HTMLField(max_length=10000, null=True, blank=True)
 
     class Meta:
         verbose_name = _("project")
@@ -27,7 +30,7 @@ class Project(models.Model):
 
 class Task(models.Model):
     name = models.CharField(_("name"), max_length=100, db_index=True)
-    description = models.TextField(_("description"), blank=True, max_length=10000)
+    description = HTMLField(_("description"), blank=True, max_length=10000)
     project = models.ForeignKey(
         Project,
         verbose_name=_("project"), 

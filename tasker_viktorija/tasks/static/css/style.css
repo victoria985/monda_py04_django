@@ -243,7 +243,7 @@ ul.dashboard li .stat {
     font-weight: 700;
     margin: 1rem;
     padding: 0.5rem;
-    background-color: #ffffff9f;
+    background: color #ffffff9f;
     border-radius: 5rem;
     min-width: 7rem;
 }
@@ -255,3 +255,12 @@ ul.dashboard li a:hover {
 ul.dashboard li a:hover h3 {
     background-color: #aaaaaa7f;
 }
+
+.user-content {
+    background-color: #ffffff7f;
+    border: 2xp solid #999999;
+    border-radius: 1rem;
+    margin: 1rem;
+    overflow: auto;
+    max-width: max-content;
+}   
