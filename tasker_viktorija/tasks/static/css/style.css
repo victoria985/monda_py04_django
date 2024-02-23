@@ -149,7 +149,7 @@ header form select {
     font-size: 100%;
 }  
 
-div.vaizdas {
+div.vezliuk {
     display: inline-block;
     border: 2px solid #ffcc00;
     border-radius: 1rem;
@@ -213,8 +213,12 @@ button:hover, button:hover {
     display: inline;
 }
 
-.toolbar form select {
+.toolbar form select, .toolbar form input {
     padding: 0.3rem;
+}
+
+div.tube {
+    padding: 1rem;
 }
 
 ul.dashboard {
@@ -264,3 +268,9 @@ ul.dashboard li a:hover h3 {
     overflow: auto;
     max-width: max-content;
 }   
+
+.toolbar form select.like-type {
+    margin: 0; padding: 0;
+    background-color: transparent;
+    border: none;
+}

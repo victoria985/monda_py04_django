@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}TASKer{% endblock title %}</title>
-    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% if request.user.is_authenticated and form %}
         <script src="{% static 'tinymce/tinymce.min.js' %}"></script>
         {{ form.media }}
@@ -14,47 +14,47 @@
     <header>
         <span class="logo">TASKer</span>
         <ul class="nav">
-            <li><a href="{% url 'index' %}">{% trans "dashboard"|capfirst %}</a></li>
-            <li><a href="{% url 'project_list' %}">{% trans "projects"|capfirst %}</a></li>
-            <li><a href="{% url 'task_list' %}">{% trans "tasks"|capfirst %}</a></li>
+            <li><a href="{% url "index" %}">{% trans "dashboard"|capfirst %}</a></li>
+            <li><a href="{% url "project_list" %}">{% trans "projects"|capfirst %}</a></li>
+            <li><a href="{% url "task_list" %}">{% trans "tasks"|capfirst %}</a></li>
         </ul>
         <span class="spacer"></span>
-        <ul class="nav nav-user">
-            {% if user.is_authenticated %}
-                <li><a href="{% url 'user_detail_current' %}">{{ user }}</a></li>
+        <ul class="nav">
+            {% if request.user.is_authenticated %}
+                <li><a href="{% url "user_detail_current" %}">{{ user }}</a></li>
                 {% if user.is_superuser or user.is_staff %}
-                    <li><a href="{% url 'admin:index' %}">{% trans "admin"|capfirst %}</a></li>
+                    <li><a href="{% url "admin:index" %}">{% trans "admin"|capfirst %}</a></li>
                 {% endif %}
-                <li><form method="post" action="{% url "logout" %}">{% csrf_token %}<button type="submit">{% trans "log out"|capfirst %}</button></form></li>
+                <li><form method="post" action="{% url "logout" %}">{% csrf_token %}
+                <button type="submit">{% trans "log out"|capfirst %}</button></form></li>
             {% else %}
-                <li><a href="{% url 'login' %}">{% trans "log in"|capfirst %}</a></li>
-                <li><a href="{% url 'signup' %}">{% trans "sign up"|capfirst %}</a></li>
+                <li><a href="{% url "login" %}">{% trans "log in"|capfirst %}</a></li>
+                <li><a href="{% url "signup" %}">{% trans "sign up"|capfirst %}</a></li>
             {% endif %}
         </ul>
-        <form action="{% url 'set_language' %}" method="post">
+        <form action="{% url "set_language" %}" method="post">
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ redirect_to }}">
             <select class="language" name="language" onchange="this.form.submit();">
-                {% for lang in LANGUAGES %}
-                    <option value="{{ lang.0 }}" {% if lang.0 == LANGUAGE_CODE %}selected{% endif %}>
-                        {{ lang.1 }}
+                {% for language in LANGUAGES %}
+                    <option value="{{ language.0 }}" {% if language.0 == LANGUAGE_CODE %}selected{% endif %}>
+                        {{ language.1 }}
                     </option>
                 {% endfor %}
             </select>
         </form>
     </header>
-    <div class="messages">
+    <section class="messages">
         {% for message in messages %}
             <p class="message message-{{ message.tags }}">{{ message }}</p>
         {% endfor %}
-    </div>
+    </section>
     <main>{% block content %}{% endblock content %}</main>
     <footer>
         {% block footer %}{% endblock footer %}
-        <p>&copy; 2024 PTU20  
-            <a style="float:right;" href="https://discord.gg/ywbbZPcY"target="_blank"><img class="icon" src="{% static "img/discord-icon.png" %}"></a>
-            <a style="float:right;" href="https://google.com/" target="_blank"><img class="icon" src="{% static "img/google-logo.png" %}"></a>
-            <a style="float:right;" href="https://facebook.com/" target="_blank"><img class="icon" src="{% static "img/facebook-logo.png" %}"></a>
+        <p>&copy; 2024 PTU20 
+            <a style="float:right;" href="https://discord.gg/ywbbZPcY">{% trans "community on discord" %}</a>
+            <a style="float:right;" href="https://facebook.com/" target="_blank"><img class="icon" src="{% static "img/icons8-facebook-48.png" %}"></a>
         </p>
     </footer>
 </body>
